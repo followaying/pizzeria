@@ -1,0 +1,24 @@
+1. To start (for linux):
+minikube start
+docker build -t pizzeria-node-app .
+eval $(minikube docker-env)
+cd kubernetes
+kubectl apply -f app-deployment.yml -f app-service.yml -f mongo-deployment.yml -f mongo-service.yml -f mongo-express-deployment.yml -f mongo-express-service.yml -f nginx-deployment.yml -f nginx-service.yml -f nginx-certs.yml -f nginx-config.yml
+
+
+2. Click on the link returned by:
+minikube service webapp-service --url
+
+
+Optional (check pods and services):
+kubectl get pods
+kubectl get services
+
+3. to delete pods + certs + config:
+kubectl delete --all -f app-deployment.yml -f app-service.yml -f mongo-deployment.yml -f mongo-service.yml -f mongo-express-deployment.yml -f mongo-express-service.yml -f nginx-deployment.yml -f nginx-service.yml -f nginx-certs.yml -f nginx-config.yml
+
+5. to stop minikube 
+minikube stop
+
+
+
